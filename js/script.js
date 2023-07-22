@@ -43,7 +43,7 @@ window.addEventListener('DOMContentLoaded', function() {
     
     // Timer
 
-    const deadline = '2022-06-11';
+    const deadline = '2023-08-19';
 
     function getTimeRemaining(endtime) {
         const t = Date.parse(endtime) - Date.parse(new Date()),
@@ -299,4 +299,8 @@ window.addEventListener('DOMContentLoaded', function() {
             closeModal();
         }, 4000);
     }
+
+	fetch('http://localhost:3000/menu')
+		.then(data => data.json())
+		.then(res => console.log(res));
 });
