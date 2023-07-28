@@ -1,12 +1,12 @@
-function slider() {
-	const slides = document.querySelectorAll('.offer__slide'),
-		  slider = document.querySelector('.offer__slider'),
-		  prev = document.querySelector('.offer__slider-prev'),
-		  next = document.querySelector('.offer__slider-next'),
-		  total = document.querySelector('#total'),
-		  current = document.querySelector('#current'),
-		  slidesWrapper = document.querySelector('.offer__slider-wrapper'),
-		  slidsField = document.querySelector('.offer__slider-inner'),
+function slider({container, slide, nextArrow, prevArrow, totalCounter, currentCounter, wrapper, field}) {
+	const slides = document.querySelectorAll(slide),
+		  slider = document.querySelector(container),
+		  prev = document.querySelector(prevArrow),
+		  next = document.querySelector(nextArrow),
+		  total = document.querySelector(totalCounter),
+		  current = document.querySelector(currentCounter),
+		  slidesWrapper = document.querySelector(wrapper),
+		  slidesField = document.querySelector(field),
 		  width = window.getComputedStyle(slidesWrapper).width;
 	let slideIndex = 1;
 	let offset = 0;
@@ -36,9 +36,9 @@ function slider() {
 		current.textContent = slideIndex;
 	}
 
-	slidsField.style.width = 100 * slides.length + '%';
-	slidsField.style.display = 'flex';
-	slidsField.style.transition = '0.5s all';
+	slidesField.style.width = 100 * slides.length + '%';
+	slidesField.style.display = 'flex';
+	slidesField.style.transition = '0.5s all';
 
 	slidesWrapper.style.overflow = 'hidden';
 
@@ -97,7 +97,7 @@ function slider() {
 		} else {
 			offset += deleteNotDigits(width);
 		}
-		slidsField.style.transform = `translateX(-${offset}px)`;
+		slidesField.style.transform = `translateX(-${offset}px)`;
 
 		if(slideIndex == slides.length) {
 			slideIndex = 1;
@@ -115,7 +115,7 @@ function slider() {
 		} else {
 			offset -= deleteNotDigits(width);
 		}
-		slidsField.style.transform = `translateX(-${offset}px)`;
+		slidesField.style.transform = `translateX(-${offset}px)`;
 
 		if(slideIndex == 1) {
 			slideIndex = slides.length;
@@ -134,7 +134,7 @@ function slider() {
 			slideIndex = slideTo;
 			offset = deleteNotDigits(width) * (slideTo - 1);
 
-			slidsField.style.transform = `translateX(-${offset}px)`;
+			slidesField.style.transform = `translateX(-${offset}px)`;
 
 			countCurrent();
 			changeDotsOpacity(dots);
